@@ -1,0 +1,43 @@
+##load pandas
+import pandas as pd
+
+##load data. reads from folder where the notebook is saved.
+irmadata = pd.read_excel('irma.xlsx')
+
+##view first rows
+irmadata.head()
+
+##recall data based on row column reference.
+irmadata.loc[0]['latitude']
+
+##calculate mean of a column
+irmadata['latitude'].mean()
+
+##################################
+
+##install plotly. not pre-installed. use acaconda prompt type in: conda install -c anaconda plotly
+
+##import libraries
+import pandas
+import plotly
+import plotly.graph_objs as go
+from plotly.offline import init_notebook_mode, iplot
+init_notebook_mode(connected=True)
+
+##import data
+irmadata = pd.read_excel('irma.xlsx')
+
+##create time-series graph...
+
+##define data as trace
+trace = go.scatter(x=irmadata['hour'][y='windspeed']), name 'windspeed for irma', mode='lines + markers'
+
+##define data
+data = [trace]
+
+##define layout
+mylayout = go.Layout(title='windspeed of irma over time',xaxis={'title':'time in hours'},yaxis={'title':'windspeed})
+
+##combine all elements
+fig = go.Figure(data=mydata,layout=mylayout)
+plotly.offline.iplot(fig)
