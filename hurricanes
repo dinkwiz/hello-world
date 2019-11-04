@@ -41,3 +41,31 @@ mylayout = go.Layout(title='windspeed of irma over time',xaxis={'title':'time in
 ##combine all elements
 fig = go.Figure(data=mydata,layout=mylayout)
 plotly.offline.iplot(fig)
+
+#############################
+
+import pandas as pd
+import numpy
+df= pd.read_excel('irmadata.xlsx')
+
+##define windspeed
+windspeed= df.loc[:'maximum sustained wind']
+print(windspeed)
+
+##calculate max
+maxspeed= max(windspeed)
+print(maxspeed)
+
+##what category?
+if(maxspeed>=64 and maxspeed<83):
+    print('category 1')
+elif(maxspeed>82 and <96):
+    print('category 2')
+elif(maxspeed>95 and <113):
+    print('category 3')
+elif(maxspeed>113 and <137):
+    print('categoey 4')
+elid(maxspeed>136):
+    print('category 5')
+else:
+    print('windspeed is too low')
