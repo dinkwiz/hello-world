@@ -65,7 +65,276 @@ elif(maxspeed>95 and <113):
     print('category 3')
 elif(maxspeed>113 and <137):
     print('categoey 4')
-elid(maxspeed>136):
+elif(maxspeed>136):
     print('category 5')
 else:
     print('windspeed is too low')
+
+################################
+
+#matplotlib and cartopy
+
+#install packages using AnacondaPrompt 
+
+#conda install -c conda-forge cartopy
+#conda install -c conda-forge matplotlib
+
+#press y if it asks if you want to proceed.
+
+import matplotlib.pyplot as plt
+import cartopy.crs as ccrs
+import cartopy.features as cf
+
+#create axes object
+
+ax= plt:axes(projection = ccrs.PlateCarree())
+
+#add colour
+ax.stock_img()
+
+#add coastlines
+ax.add_feature(cf.COASTLINE)
+
+#add title
+ax.set_title("base map")
+
+#show map
+plt.show()
+
+#plotting paths on a map
+
+import matplotlib.pyplot as plt
+import cartopy.crs as ccrs
+import cartopy.features as cf
+import pandas as pd
+
+
+#import data
+irmadata = pd.read_excel('DangerZone.xlsx')
+irma_lats = irmadata('Average Latitude').toList()
+irma_lomgs = irmadata('Average Longitude').toList()
+
+#focus map on particular region. define extent[min long, max long, min lat, max lat]
+extent[-10, -90, 0, 50]
+
+
+#create axes object as before
+ax= plt:axes(projection = ccrs.PlateCarree())
+ax.stock_img()
+ax.add_feature(cf.COASTLINE)
+
+#set extent (scale of map)
+ax.set_extent(extent)
+
+#set coastline resolution
+ax.coastlines(resolution='50m'}
+
+#add in irma and ship positions (indicating marker shape, colour and label)
+ax.plot(irma_longs,irma_lats)
+ax.plot(-85,17, 'ro', label='ship 1')
+ax.plot(--78,23, 'ko', label='ship 2')
+ax.plot(-68,18.5, 'ro', label='ship 3')
+ax.plot(-72,20, 'yo', label='ship 4')
+ax.plot(-73,17.70, 'bo', label='ship 5')
+ax.plot(-80,23, 'go', label='ship 6')
+
+ax.set_title("Potential Irma Path with Ships")
+
+plt.show()
+
+###Cone of uncertainty - Danger Zone
+
+#use standard deviation to plot
+#calculate min and max paths by adding/subtracting standard deviation from average path.
+#start with same code as before.
+
+import matplotlib.pyplot as plt
+import cartopy.crs as ccrs
+import cartopy.features as cf
+import pandas as pd
+
+irmadata = pd.read_excel('DangerZone.xlsx')
+irma_lats = irmadata('Average Latitude').toList()
+irma_lomgs = irmadata('Average Longitude').toList()
+
+extent[-10, -90, 0, 50]
+
+ax= plt:axes(projection = ccrs.PlateCarree())
+ax.stock_img()
+ax.add_feature(cf.COASTLINE)
+ax.set_extent(extent)
+ax.coastlines(resolution='50m'}
+
+ax.plot(irma_longs,irma_lats)
+ax.plot(-85,17, 'ro', label='ship 1')
+ax.plot(--78,23, 'ko', label='ship 2')
+ax.plot(-68,18.5, 'ro', label='ship 3')
+ax.plot(-72,20, 'yo', label='ship 4')
+ax.plot(-73,17.70, 'bo', label='ship 5')
+ax.plot(-80,23, 'go', label='ship 6')
+
+ax.set_title("Potential Irma Path with Ships")
+
+#add in standard deviations
+
+latstd = data('Latitude StD').toList()
+longstd = data('Longitude StD').toList()
+
+#calculate min and max lats and longs
+
+min_lats = []
+max_lats = []
+min_longs = []
+max_longs = []
+
+position =0
+for i in irma_lats:
+    min_lats.append(i - latsstd[position])
+    max_lats.append(i + latsstd[position])    
+    position+=1
+    
+position =0
+for i in irma_lats:
+    min_longs.append(i - longstd[position])
+    max_longs.append(i + longstd[position])    
+    position+=1
+
+#change size so it looks better
+fig_size=[20,15]
+plt.rcParams["figure.figsize"]=fig_size
+
+#plot path on map
+ax.plot(min_longs, min_lats, label='min_path')
+ax.plot(max_longs, max_lats, label='max_path')
+ax.legend()
+ax.set_title('hurricane danger zone')
+plt.show()
+
+#####################################
+
+#satellite data. image of hurricane from above
+
+#netcdf file alllows multi-dimensional data 
+
+#install packaages in AnacondaPrompt
+#conda install -c conda.forge pyspectral
+#conda install -c conda.forge pysolar
+#conda install -c conda.forge netCDF4
+
+#import packages
+import pyspectral
+import pysolar
+import numpy as np
+from matplotlib import pyplot as plt
+from netCDF4 import Dataset
+from corrections import rayleighcorr as rayc
+from corrections import resolutioncorr as resc
+
+#make sure data is in same folder as python notebook.
+#bring in data and rename becuase its filename is long and confusing
+path='AWSCut\\L1_RADF\\'
+#Reading in Channel 1 Data (1 km resolution)
+filename1='OR_ABI-L1b-RadF-M3C01_G16_s20172491300352_e20172491311119_c20172491311197.nc'
+file1= path+ 'Channel01\\'+ filename1
+satdatch1= Dataset(file1)
+
+#label variables to be used
+satdatch1lat =satdatch1.variables['Latitude'][:]
+satdatch1long =satdatch1.variables['Longitude'][:]
+satdatch1rad =satdatch1.variables['Rad'][:]
+
+#repeat for 2nd and 3rd files
+
+filename2='OR_ABI-L1b-RadF-M3C01_G16_s20172491300352_e20172491311119_c20172491311197.nc'
+file2= path+ 'Channel02\\'+ filename2
+satdatch2= Dataset(file2)
+satdatch2lat =satdatch2.variables['Latitude'][:]
+satdatch2long =satdatch2.variables['Longitude'][:]
+satdatch2rad =satdatch2.variables['Rad'][:]
+
+filename3='OR_ABI-L1b-RadF-M3C01_G16_s20172491300352_e20172491311119_c20172491311197.nc'
+file3= path+ 'Channel02\\'+ filename3
+satdatch3= Dataset(file3)
+satdatch3lat =satdatch3.variables['Latitude'][:]
+satdatch3long =satdatch3.variables['Longitude'][:]
+satdatch3rad =satdatch3.variables['Rad'][:]
+
+#change resolution for second set of data
+satdata2lat, satdatach2lon, satdatach2rad, = resc(satdatach2lath, satdatach2lonh, satdatach2radh)
+
+
+RRC, GRC, BRC = rayc(filename1, satdatach1lat,satdatach1lon, satdatach2lat, satdata2lon,satdatach1rad,satdatach2rad,satdatach3rad)
+
+#create image
+image=np.zeros((700,1000,3))
+
+#normalise values
+image[:,:,0]=RRC[:,:]/RRC.max()
+image[:,:,1]=GRC[:,:]/RRC.max()
+image[:,:,2]=BRC[:,:]/RRC.max()
+
+plot.imshow(image)
+plt.savefig('singleimage.png')
+
+
+##Loop images. Start with same code as previous.
+
+
+import pyspectral
+import pysolar
+import numpy as np
+from matplotlib import pyplot as plt
+from netCDF4 import Dataset
+from corrections import rayleighcorr as rayc
+from corrections import resolutioncorr as resc
+
+#import package to allow python to navigate through folder
+import os
+
+#add in some additional variable info.
+path='AWSCut\\L1_RADF\\'
+chnumber1='Channel01'
+chnumber2='Channel02'
+chnumber3='Channel03'
+
+#navigate to folder and get list of filenames
+filelist1=os.listdir(path+chapter1+'\\')
+filelist2=os.listdir(path+chapter2+'\\')
+filelist3=os.listdir(path+chapter3+'\\')
+
+#set up loop for each file
+
+for z in range(0,56):
+    print'loading scene'+str(z)+ 'out of 56')
+    k1=filelist1[z]
+    print(k1)
+    satdatch1= Dataset(k1, 'r')
+    satdatch1lat =satdatch1.variables['Latitude'][:]
+    satdatch1long =satdatch1.variables['Longitude'][:]
+    satdatch1rad =satdatch1.variables['Rad'][:]
+
+    k2=filelist2[z]
+    satdatch2= Dataset(k2, 'r')
+    satdatch2lat =satdatch2.variables['Latitude'][:]
+    satdatch2long =satdatch2.variables['Longitude'][:]
+    satdatch2rad =satdatch2.variables['Rad'][:]
+    satdata2lat, satdatach2lon, satdatach2rad, = resc(satdatach2lath, satdatach2lonh, satdatach2radh)
+
+    k3=filelist3[z]
+    satdatch3= Dataset(k3, 'r')
+    satdatch3lat =satdatch3.variables['Latitude'][:]
+    satdatch3long =satdatch3.variables['Longitude'][:]
+    satdatch3rad =satdatch3.variables['Rad'][:]
+
+    RRC, GRC, BRC = rayc(filename1, satdatach1lat,satdatach1lon, satdatach2lat, satdata2lon,satdatach1rad,satdatach2rad,satdatach3rad)
+    image=np.zeros((700,1000,3))
+    image[:,:,0]=RRC[:,:]/RRC.max()
+    image[:,:,1]=GRC[:,:]/RRC.max()
+    image[:,:,2]=BRC[:,:]/RRC.max()
+
+    plot.imshow(image)
+    
+    #change image name so it doesnt overwrite
+    plt.savefig(k1[0:16]+k1[22:41]+'.png')
+    
+    #finally create gif in GIPHY
