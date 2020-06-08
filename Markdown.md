@@ -59,9 +59,7 @@ You can also add a tooltip to the link by adding a sentence in double quotes aft
 To add an image, add an exclamation mark (!), followed by alt text in square brackets, and the path or URL to the image in round brackets.
 You can also add a title after the URL in the parentheses.
 
-Use an ! Followed by square brackets with a description of the image and then round brackets with the file path to the image.
-
-![smiley face](https://github.com/dinkwiz/hello-world/blob/master/Smiley-face.JPG)
+Use an ! Followed by square brackets with a description of the image and then round brackets with the url to the image.
 
 ## Linking Images
 To add a link to an image, enclose the Markdown for the image in square brackets, and then add the link in round brackets.
