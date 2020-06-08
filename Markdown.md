@@ -60,9 +60,7 @@ To add an image, add an exclamation mark (!), followed by alt text in square bra
 You can also add a title after the URL in the parentheses.
 
 Use an ! Followed by square brackets with a description of the image and then round brackets with the file path to the image.
-For example “![smiley face] (smileyface.png)
-
-Because the smiley face is in the same repo as this document, a full file name is not needed.
+For example \![smiley face] (smiley-face.jpg)
 
 ## Linking Images
 To add a link to an image, enclose the Markdown for the image in square brackets, and then add the link in round brackets.
