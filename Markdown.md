@@ -35,6 +35,7 @@ Use - to start a bullet list.
 
 * item a
 * Item b
+    
     Use four spaces or tab to include content under a list item.
 
 ## Code
@@ -49,7 +50,9 @@ Use three or more asterisks (***), dashes (---), or underscores (___) on a line 
 
 ## Links
 To create a quick link use a < at the start of the link and > at the end.
+
 To create a fancy link, enclose the link text in square brackets and then follow it immediately with the URL in round brackets.
+
 You can also add a tooltip to the link by adding a sentence in double quotes after the link address within the round brackets. Just separate the link and the quote by a space.
 
 ## Images
@@ -58,6 +61,7 @@ You can also add a title after the URL in the parentheses.
 
 Use an ! Followed by square brackets with a description of the image and then round brackets with the file path to the image.
 For example “![smiley face] (smileyface.png)
+
 Because the smiley face is in the same repo as this document, a full file name is not needed.
 
 ## Linking Images
