@@ -1,5 +1,21 @@
 # Basic Markdown
 
+[Headings](https://github.com/dinkwiz/hello-world/blob/master/Markdown.md#headings)
+[Bold](https://github.com/dinkwiz/hello-world/blob/master/Markdown.md#bold)
+[Italic](https://github.com/dinkwiz/hello-world/blob/master/Markdown.md#italic)
+[Bold and Italic](https://github.com/dinkwiz/hello-world/blob/master/Markdown.md#bold-and-italic)
+[Blockquotes](https://github.com/dinkwiz/hello-world/blob/master/Markdown.md#blockquotes)
+[Numbered Lists](https://github.com/dinkwiz/hello-world/blob/master/Markdown.md#numbered-lists)
+[Bullet Lists](https://github.com/dinkwiz/hello-world/blob/master/Markdown.md#bullet-lists)
+[Code](https://github.com/dinkwiz/hello-world/blob/master/Markdown.md#code)
+[Code Blocks](https://github.com/dinkwiz/hello-world/blob/master/Markdown.md#code-blocks)
+[Section Dividers](https://github.com/dinkwiz/hello-world/blob/master/Markdown.md#section-dividers)
+[Links](https://github.com/dinkwiz/hello-world/blob/master/Markdown.md#links)
+[Images](https://github.com/dinkwiz/hello-world/blob/master/Markdown.md#images)
+[Linking Images](https://github.com/dinkwiz/hello-world/blob/master/Markdown.md#linking-images)
+[Escaping Characters](https://github.com/dinkwiz/hello-world/blob/master/Markdown.md#escaping-characters)
+[Useful Links](https://github.com/dinkwiz/hello-world/blob/master/Markdown.md#useful-links)
+
 ## Create a markdown file by saving as a .md file.
 
 ## Headings
@@ -30,7 +46,7 @@ Use 1. to start a numbered list. Followed by 2. on the next line and so on.
 1. item one
 2. item two
 
-## Bullet List
+## Bullet Lists
 Use - to start a bullet list.
 
 * item a
