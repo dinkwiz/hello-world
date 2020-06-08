@@ -60,7 +60,9 @@ To add an image, add an exclamation mark (!), followed by alt text in square bra
 You can also add a title after the URL in the parentheses.
 
 Use an ! Followed by square brackets with a description of the image and then round brackets with the file path to the image.
-For example \![smiley face](smiley-face.jpg)
+For example \![smiley face](https://www.github.com/dinkwiz/hello-world/smiley-face.jpg)
+
+![smiley face](https://www.github.com/dinkwiz/hello-world/smiley-face.jpg)
 
 ## Linking Images
 To add a link to an image, enclose the Markdown for the image in square brackets, and then add the link in round brackets.
@@ -71,3 +73,8 @@ To add a link to an image, enclose the Markdown for the image in square brackets
 To display a literal character that would otherwise be used to format text in a Markdown document, add a backslash (\) in front of the character.
 
 \- Without the backslash, this would be a bullet in an unordered list.
+
+
+# Useful Links
+
+- https://www.markdownguide.org
